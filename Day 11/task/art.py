@@ -130,5 +130,3 @@ unknown_card = """
 |░░░░░░░░░|
 |_________|
 """
-
-print(unknown_card)

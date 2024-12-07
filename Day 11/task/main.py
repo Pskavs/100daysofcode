@@ -14,6 +14,7 @@ def start_game():
             play_blackjack()
         if play_again == 'n':
             print("Thank you for playing!")
+            exit()
 #Step 2 ask for a bet and keep it with a running total
 
 #Step 3 check total money and then ask for a bet
@@ -55,16 +56,24 @@ def play_blackjack():
             random_card = random.choice(list(cards.keys()))
             print(art.card_art[random_card])
             player_total += cards[random_card]
+
+            #Checks to see if an ace was drawn.
+            if player_total == 21:
+                hit_or_stand = 's'
+            elif player_total > 21:
+                if cards[random_card] == 11:
+                    player_total -=10
+                else:
+                    print(f"Unfortunately {player_total} busts. You lose.")
+                    hit_or_stand = 'PLAYER LOST'
             print(f"Your new total is {player_total}")
-            if player_total > 21:
-                print(f"Unfortunately {player_total} busts. You lose.")
-                hit_or_stand = 'PLAYER LOST'
+
         elif hit_or_stand == 's':
 
             #Goes to a function that calculates the computer hitting until it hits over 17.
             computer_total = computer_hit_or_stand(computer_total, drawn_cards)
             if player_total > computer_total:
-                print(f"Player has {player_total} which beats the computer that has {computer_total} :(")
+                print(f"Player has {player_total} which beats the computer that has {computer_total} :)")
             elif player_total < computer_total:
                 print(f"Player has {player_total} which loses to the computer that has {computer_total} :(")
             else:
@@ -77,16 +86,17 @@ def play_blackjack():
 def computer_hit_or_stand(computer_total, drawn_cards):
     while computer_total < 17:
         random_card = random.choice(list(cards.keys()))
-        computer_total += cards[random_card]
         print(art.card_art[random_card])
         if computer_total > 21:
-            if cards[drawn_cards[0]] == 11 or cards[drawn_cards[1]] == 11:
-                computer_total -= 10.
-                random_card = random.choice(list(cards.keys()))
-                print(art.card_art[random_card])
-                computer_total += cards[random_card]
+            if cards[drawn_cards[0]] == 11:
+                cards[drawn_cards[0]] = 1
+            elif cards[drawn_cards[1]] == 11:
+                cards[drawn_cards[1]] = 1
+            elif cards[random_card] == 11:
+                random_card = "1"
             else:
                 print(f"Computer has {computer_total} which busts. You win!")
                 start_game()
+        computer_total += cards[random_card]
     return computer_total
 start_game()
