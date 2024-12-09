@@ -53,27 +53,23 @@ def main():
 
     def report():
         """Prints a report of all the levels in resources."""
-        print(f"Water: {resources["water"]}ml\n"
-              f"Milk: {resources["milk"]}ml\n"
-              f"Coffee: {resources["coffee"]}g\n"
-              f"Money: ${resources['money']:.2f}")
+        for amount in resources:
+            print(f"resources[amount]")
+        # print(f"Water: {resources["water"]}ml\n"
+        #       f"Milk: {resources["milk"]}ml\n"
+        #       f"Coffee: {resources["coffee"]}g\n"
+        #       f"Money: ${resources['money']:.2f}")
 
     def check_resources(u_input):
         """Checks to make sure there are enough of each resource to make the drinks."""
-        water_needed = MENU[u_input]["ingredients"]["water"]
-        milk_needed = MENU[u_input]["ingredients"]["milk"]
-        coffee_needed = MENU[u_input]["ingredients"]["coffee"]
-        if water_needed > resources["water"]:
-            print("Not enough water in machine. Please add more.")
-            exit()
-        if milk_needed > resources["milk"]:
-            print("Not enough milk in machine. Please add more.")
-            exit()
-        if coffee_needed > resources["coffee"]:
-            print("Not enough coffee in machine. Please add more.")
-            exit()
-        else:
-            process_payment(u_input)
+        ingredients_needed = MENU[u_input]["ingredients"]
+        for items in ingredients_needed:
+
+            if ingredients_needed[items] > resources[items]:
+                print(f"Not enough {items} in machine. Please add more.")
+                exit()
+            else:
+                process_payment(u_input)
 
     def process_payment(u_input):
         """Asks the users to enter money, one value at a time. Similar to a vending machine. It then calculates
@@ -115,9 +111,9 @@ def main():
 
     def make_coffee(u_input):
         """Uses the resources to make coffee and tells the user to enjoy"""
-        resources["coffee"] -= MENU[u_input]['ingredients']['coffee']
-        resources["water"] -= MENU[u_input]['ingredients']['water']
-        resources["milk"] -= MENU[u_input]['ingredients']['milk']
+        order_ingredients = MENU[u_input]["ingredients"]
+        for item in order_ingredients:
+            resources[item] -= order_ingredients[item]
         print(f"Enjoy your {u_input}!")
 
 
