@@ -18,6 +18,8 @@ color_values = [(235, 38, 116), (215, 164, 59), (142, 27, 69), (237, 71, 36), (1
                 (31, 123, 187), (176, 44, 99), (53, 189, 228), (243, 219, 53), (79, 21, 72)]
 
 #Sets the turtle to the bottom left, and sets the color mode for rgb values.
+turtle.hideturtle()
+turtle.speed(0)
 turtle.teleport(-200,-200)
 turtle.colormode(255)
 for row in range(1,11):
