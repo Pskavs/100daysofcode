@@ -7,14 +7,22 @@ class Snake:
     def __init__(self):
         self.body = []
         #Creates three square segments for the snake body.
+        self.create_snake()
+        #creates the head which is the first square segment.
+        self.head = self.body[0]
+
+    def create_snake(self):
         for i in range(3):
             new_square = Turtle("square")
             new_square.color("white")
             new_square.penup()
             new_square.setx(i * -20)
             self.body.append(new_square)
-
-        #creates the head which is the first square segment.
+    def reset(self):
+        for segment in self.body:
+            segment.goto(1000, 1000)
+        self.body.clear()
+        self.create_snake()
         self.head = self.body[0]
     def extend(self):
         new_square = Turtle("square")
