@@ -1,3 +1,4 @@
+from tkinter import messagebox
 import turtle
 import pandas as pd
 screen = turtle.Screen()
@@ -39,10 +40,12 @@ def check_state(u_input):
         screen.title(f"Try again! {SCORE} / 50 states correct.")
 game_is_active = True
 while game_is_active:
-    user_input = screen.textinput(title= "Guess State", prompt="What is the name of a U.S. state?").title()
-    if user_input is None:
+    if SCORE == 50:
+        messagebox.showinfo( "WINNER!", "YOU WIN THE GAME! Great Job :)")
         game_is_active = False
     else:
-        check_state(user_input)
-
-
+        user_input = screen.textinput(title= "Guess State", prompt="What is the name of a U.S. state?").title()
+        if user_input is None:
+            game_is_active = False
+        else:
+            check_state(user_input)
