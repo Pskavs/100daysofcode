@@ -27,7 +27,7 @@ label_km.grid(column=2, row=1)
 
 #When the button is clicked, it calculates the km and displays it.
 def calc_km():
-     label_answer.config(text=round(float(input.get())/1.609,2))
+     label_answer.config(text=round(float(input.get())*1.609,2))
 
 #Creates the button to convert miles to km.
 calc_button = tk.Button(text="Calculate", command=calc_km)
