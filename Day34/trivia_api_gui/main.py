@@ -1,4 +1,4 @@
-from Day34.ui import QuizInterface
+from ui import QuizInterface
 from question_model import Question
 from data import question_data
 from quiz_brain import QuizBrain

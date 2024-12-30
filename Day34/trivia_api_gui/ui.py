@@ -8,7 +8,7 @@ class QuizInterface:
         #Creates the window
         self.quiz=quiz_brain
         self.window = Tk()
-        self.window.title("Quizzin")
+        self.window.title("Trivia")
         self.window.config(background=THEME_COLOR)
         
         #Creates the score label
