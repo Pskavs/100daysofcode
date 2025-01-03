@@ -40,7 +40,7 @@ exercise_calories = exercise_data[0]['nf_calories']
 
 #Sets the time and date for today for tracking purposes.
 import datetime
-today = datetime.date.today().strftime('%d/%m/%Y')
+today = datetime.date.today().strftime('/%m%d/%Y')
 time = datetime.datetime.now().strftime('%H:%M')
 print(time,today)
 
